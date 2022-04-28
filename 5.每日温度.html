@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			/*
+      params T:number[]---->每日温度数组[73,74,75,71,769,72,76,73]
+      return number[]----->等待天数列表[1,1,4,2,1,1,0,0]
+    */
+			function dailyTemperatures(T) {
+				// 创建单调栈，用于记录--->存储索引值，用于记录
+				const stack = [0];
+				let count = 1;
+
+				// 创建结果数组
+				const len = T.length;
+				const arr = new Array(len).fill(0);
+
+				// 遍历
+				for (let i = 1; i < len; i++) {
+					let temp = T[i];
+					while (count && temp > T[stack[count - 1]]) {
+						let index = stack.pop();
+						count--;
+						arr[index] = i - index;
+					}
+					stack.push(i);
+					count++;
+				}
+				return arr;
+			}
+			console.log(dailyTemperatures([73, 74, 75, 71, 769, 72, 76, 73]));
+		</script>
+	</body>
+</html>

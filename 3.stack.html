@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>后进先出</h1>
+		<button class="push">push</button>
+		<button class="pop">pop</button>
+		<button class="top">top</button>
+		<button class="size">size</button>
+		<button class="clear">clear</button>
+		<script>
+			class Stack {
+				constructor() {
+					this.stack = [];
+				}
+				push(x) {
+					//  this.stack.push(x);
+					this.stack[this.size()] = x;
+				}
+				pop() {
+					if (this.isEmpty()) {
+						this.stack.pop();
+					} else {
+						return "栈为空";
+					}
+				}
+				top() {
+					return this.stack[this.size()];
+				}
+				size() {
+					return this.stack.length;
+				}
+				clear() {
+					this.stack = [];
+				}
+				// 检测栈为空
+				isEmpty() {
+					return this.size() === 0;
+				}
+			}
+			let s = new Stack();
+			console.log(s);
+			s.push(12);
+			console.log(s);
+			s.push(14);
+			s.pop();
+      s.clear()
+		</script>
+	</body>
+</html>

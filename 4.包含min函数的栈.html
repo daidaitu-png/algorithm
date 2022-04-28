@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			class MinStack {
+				constructor() {
+					this.stackA = []; // 原栈
+					this.stackB = []; // 存min的栈
+					this.countA = 0;
+					this.countB = 0;
+				}
+				top() {
+					return this.stackA[this.countA - 1];
+				}
+				min() {
+					return this.stackB[this.countB - 1];
+				}
+				push(x) {
+					this.stackA[this.countA++] = x;
+					if (this.countB === 0 || x < this.min()) {
+						this.stackB[this.countB++] = x;
+					}
+				}
+				pop() {
+					if (this.top() === min()) {
+						this.stackB.pop();
+					}
+					this.stackA.pop();
+				}
+			}
+			let m = new MinStack();
+		</script>
+	</body>
+</html>

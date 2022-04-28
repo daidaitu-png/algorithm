@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			class MaxQueue {
+				constructor() {
+					this.queue = {}; // 存储队列数据
+					this.deque = {}; // 双端队列维护最大值，每个阶段的最大值
+					this.headQ = this.headD = this.countQ = this.countD = 0;
+				}
+				max_value() {
+					if (this.isEmptyDeque()) {
+						return -1;
+					}
+					return this.deque[this.headD];
+				}
+				isEmptyDeque() {
+					return this.countQ - this.headQ === 0;
+				}
+				isEmptyQueue() {
+					return this.countD - this.headD === 0;
+				}
+				pop_front(x) {
+					if (this.isEmptyQueue()) {
+						return -1;
+					}
+					// 比较deque与queue的队首值---->相同deque出队；否则，deque不操作
+					if (this.deque[this.headD] === this.queue[this.headQ]) {
+						delete this.deque[this.headD++];
+					}
+					const frontData = this.queue[this.headQ];
+					delete this.queue[this.headQ++];
+					return frontData;
+				}
+				push_back(x) {
+					this.queue[this.countQ++] = x;
+					while (!this.isEmptyDeque() && x > this.deque[this.countD - 1]) {
+						delete this.deque[--this.countD];
+					}
+					this.deque[this.countD++] = x;
+				}
+			}
+
+			const m = new MaxQueue();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<script>
+			// 双端队列
+			class Deque {
+				constructor() {
+					this.queue = {};
+					this.count = 0;
+					this.head = 0;
+				}
+				addFront(x) {
+					this.queue[--this.head] = x;
+				}
+				addBack(x) {
+					this.queue[this.count++] = x;
+				}
+				size() {
+					return this.count - this.head;
+				}
+				isEmpty() {
+					return this.size() === 0;
+				}
+				removeFront() {
+					const headData = this.queue[this.head];
+					delete this.queue[this.head++];
+					return headData;
+				}
+				removeBack() {
+					const backData = this.queue[this.count - 1];
+					delete this.queue[--this.count];
+					return backData;
+				}
+				frontTop() {
+					return this.queue[this.head];
+				}
+				backTop() {
+					return this.queue[this.count - 1];
+				}
+			}
+
+			const deq = new Deque();
+		</script>
+	</body>
+</html>
